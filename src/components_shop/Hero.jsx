@@ -7,7 +7,7 @@ const navigation = [
   { name: "Inicio", href: "/" },
   { name: "Productos", href: "/shop/" },
   { name: "Pedidos", href: "/shop/order" },
-  { name: "Nosotros", href: "/" },
+  { name: "Nosotros", href: "/about" },
 ];
 
 export default function Hero() {
@@ -185,7 +185,7 @@ export default function Hero() {
                 Ver productos
               </a>
               <a
-                href="/nosotros"
+                href="/about"
                 className="text-sm/6 font-semibold text-gray-900"
               >
                 Nuestra historia <span aria-hidden="true">→</span>

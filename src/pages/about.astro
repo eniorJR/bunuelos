@@ -1,5 +1,18 @@
 ---
-import Layout from "../components/Layout.astro";
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components_about/Hero.astro";
+import Testimonial from "../components_about/Testimonial.astro";
+import About1 from "../components_about/About1.astro";
+import About2 from "../components_about/About2.astro";
+import Footer from "../components_about/Footer.astro";
+import FAQ from "../components/FAQ.astro";
 ---
 
-<Layout />
+<Layout title="Sobre Nosotros | Buñuelos">
+  <Hero />
+  <About1 />
+  <About2 />
+  <Testimonial />
+  <FAQ />
+  <Footer />
+</Layout>

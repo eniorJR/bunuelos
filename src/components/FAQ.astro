@@ -1,195 +1,83 @@
-<div class="bg-white py-6 sm:py-8 lg:py-12 px-20">
-  <div class="mx-auto max-w-screen-2xl md:px-8">
-    <!-- text - start -->
+---
+const faqs = [
+  {
+    question: "¿Cuál es la historia detrás de vuestros buñuelos?",
+    answer:
+      "Nuestra historia comenzó hace más de tres generaciones, cuando nuestra abuela María empezó a preparar buñuelos siguiendo una receta familiar centenaria. Lo que comenzó como una tradición para reuniones familiares pronto se convirtió en un pequeño negocio local. Hoy, mantenemos viva esa tradición utilizando los mismos ingredientes de calidad y técnicas artesanales.",
+  },
+  {
+    question: "¿Qué hace que vuestros buñuelos sean especiales?",
+    answer:
+      "Lo que hace especiales a nuestros buñuelos es la combinación de una receta tradicional transmitida durante generaciones, ingredientes cuidadosamente seleccionados y un proceso de elaboración completamente artesanal. Cada buñuelo es formado a mano y horneado con precisión para lograr la textura y sabor perfectos.",
+  },
+  {
+    question: "¿Utilizáis ingredientes locales?",
+    answer:
+      "Sí, siempre que es posible utilizamos ingredientes locales y de temporada. Creemos firmemente en apoyar a los productores locales y en ofrecer a nuestros clientes productos frescos y de la máxima calidad. Esta filosofía forma parte de nuestro compromiso con la sostenibilidad y la comunidad.",
+  },
+  {
+    question:
+      "¿Ofrecéis opciones para personas con intolerancias alimentarias?",
+    answer:
+      "Actualmente estamos desarrollando una línea de buñuelos para personas con necesidades dietéticas específicas, incluyendo opciones sin gluten y sin lactosa. Nuestro objetivo es que todos puedan disfrutar de nuestros deliciosos buñuelos, independientemente de sus restricciones alimentarias.",
+  },
+  {
+    question: "¿Realizáis visitas guiadas a vuestro obrador?",
+    answer:
+      "Sí, organizamos visitas guiadas a nuestro obrador para grupos reducidos, donde podréis conocer de primera mano nuestro proceso de elaboración y la historia de nuestra empresa familiar. Las visitas deben reservarse con antelación a través de nuestra página de contacto o por teléfono.",
+  },
+  {
+    question: "¿Hacéis envíos a toda España?",
+    answer:
+      "Sí, realizamos envíos a toda la península ibérica. Nuestros buñuelos se envían en un packaging especial que garantiza que lleguen en perfectas condiciones. Para pedidos internacionales o a las islas, por favor contacta con nosotros para consultar disponibilidad y condiciones.",
+  },
+];
+---
+
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-xl px-4 md:px-8">
     <div class="mb-10 md:mb-16">
       <h2
         class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl"
       >
-        Todo sobre nuestros Buñuelos Artesanales
+        Preguntas Frecuentes
       </h2>
 
       <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-        Información sobre nuestra elaboración artesanal, pedidos y envíos a toda
-        España
+        Aquí encontrarás respuestas a las preguntas más comunes sobre nuestra
+        historia, productos y servicios.
       </p>
     </div>
-    <!-- text - end -->
 
-    <div class="grid gap-8 sm:grid-cols-2 sm:gap-y-10 xl:grid-cols-3">
-      <!-- question - start -->
-      <div class="relative rounded-lg bg-gray-100 p-5 pt-8">
-        <span
-          class="absolute -top-4 left-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
+    <div class="grid gap-4 sm:grid-cols-2 md:gap-8">
+      {
+        faqs.map((faq) => (
+          <div class="rounded-lg bg-gray-100 p-5">
+            <div class="mb-4 flex items-center justify-between gap-4 border-b pb-4">
+              <h3 class="font-semibold text-indigo-500 sm:text-lg md:text-xl">
+                {faq.question}
+              </h3>
 
-        <h3 class="mb-3 text-lg font-semibold text-indigo-500 md:text-xl">
-          ¿Cómo se elaboran vuestros buñuelos?
-        </h3>
-        <p class="text-gray-500">
-          Nuestros buñuelos son elaborados artesanalmente cada día siguiendo la
-          receta tradicional. Utilizamos ingredientes frescos de primera calidad
-          y los preparamos al momento para garantizar su sabor y textura
-          perfecta.
-        </p>
-      </div>
-      <!-- question - end -->
+              <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-300 text-gray-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </div>
 
-      <!-- question - start -->
-      <div class="relative rounded-lg bg-gray-100 p-5 pt-8">
-        <span
-          class="absolute -top-4 left-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
-
-        <h3 class="mb-3 text-lg font-semibold text-indigo-500 md:text-xl">
-          ¿Qué variedades de buñuelos ofrecéis?
-        </h3>
-        <p class="text-gray-500">
-          Disponemos de cuatro variedades: el buñuelo clásico con azúcar,
-          relleno de crema, relleno de nata montada natural y relleno de
-          chocolate belga. Todos elaborados diariamente en nuestro obrador.
-        </p>
-      </div>
-      <!-- question - end -->
-
-      <!-- question - start -->
-      <div class="relative rounded-lg bg-gray-100 p-5 pt-8">
-        <span
-          class="absolute -top-4 left-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
-
-        <h3 class="mb-3 text-lg font-semibold text-indigo-500 md:text-xl">
-          ¿Cómo puedo hacer un pedido grande?
-        </h3>
-        <p class="text-gray-500">
-          Para pedidos de más de 50 unidades, recomendamos hacer el encargo con
-          48 horas de antelación. Puedes contactarnos por teléfono o email para
-          asegurar tu pedido y coordinar la entrega.
-        </p>
-      </div>
-      <!-- question - end -->
-
-      <!-- question - start -->
-      <div class="relative rounded-lg bg-gray-100 p-5 pt-8">
-        <span
-          class="absolute -top-4 left-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
-
-        <h3 class="mb-3 text-lg font-semibold text-indigo-500 md:text-xl">
-          ¿Hacéis entregas a domicilio?
-        </h3>
-        <p class="text-gray-500">
-          Sí, realizamos entregas a domicilio en toda la zona metropolitana para
-          pedidos superiores a 20 unidades. El coste y tiempo de entrega varía
-          según la zona.
-        </p>
-      </div>
-      <!-- question - end -->
-
-      <!-- question - start -->
-      <div class="relative rounded-lg bg-gray-100 p-5 pt-8">
-        <span
-          class="absolute -top-4 left-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
-
-        <h3 class="mb-3 text-lg font-semibold text-indigo-500 md:text-xl">
-          ¿Cuánto tiempo se conservan frescos?
-        </h3>
-        <p class="text-gray-500">
-          Los buñuelos están en su punto óptimo el mismo día de elaboración.
-          Recomendamos consumirlos dentro de las primeras 24 horas para
-          disfrutar de toda su textura y sabor.
-        </p>
-      </div>
-      <!-- question - end -->
-
-      <!-- question - start -->
-      <div class="relative rounded-lg bg-gray-100 p-5 pt-8">
-        <span
-          class="absolute -top-4 left-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </span>
-
-        <h3 class="mb-3 text-lg font-semibold text-indigo-500 md:text-xl">
-          ¿Qué métodos de pago aceptáis?
-        </h3>
-        <p class="text-gray-500">
-          Aceptamos efectivo, tarjetas de crédito/débito, transferencia bancaria
-          y pagos móviles (Bizum). Para pedidos grandes, se requiere un adelanto
-          del 30%.
-        </p>
-      </div>
-      <!-- question - end -->
+            <p class="text-gray-500">{faq.answer}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </div>
