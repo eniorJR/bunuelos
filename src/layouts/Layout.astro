@@ -6,6 +6,8 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script src="https://js.stripe.com/v3/"></script>
+
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="generator" content={Astro.generator} />
@@ -16,4 +18,8 @@ import "../styles/global.css";
   </body>
 </html>
 
-<style></style>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

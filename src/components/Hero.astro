@@ -22,17 +22,17 @@ import Logo from "../assets/logo.png";
       <nav class="hidden gap-12 lg:flex">
         <a href="#" class="text-lg font-semibold text-indigo-500">Inicio</a>
         <a
-          href="#"
+          href="/shop#products"
           class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
           >Productos</a
         >
         <a
-          href="#"
+          href="/shop/order"
           class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
           >Pedidos</a
         >
         <a
-          href="#"
+          href="/About/"
           class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
           >Nosotros</a
         >
@@ -41,7 +41,7 @@ import Logo from "../assets/logo.png";
 
       <!-- buttons - start -->
       <a
-        href="#"
+        href="/shop/"
         class="hidden rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block"
         >Pedir ya</a
       >
@@ -68,11 +68,11 @@ import Logo from "../assets/logo.png";
     </header>
 
     <section
-      class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row px-20"
+      class="flex flex-col justify-between gap-6 sm:gap-8 md:gap-14 lg:flex-row px-10"
     >
       <!-- content - start -->
       <div
-        class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24"
+        class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-6/12 xl:py-24"
       >
         <p
           class="mb-4 font-semibold text-indigo-500 md:mb-6 md:text-lg xl:text-xl"
@@ -83,28 +83,29 @@ import Logo from "../assets/logo.png";
         <h1
           class="mb-8 text-4xl font-bold text-black sm:text-5xl md:mb-12 md:text-6xl"
         >
-          Buñuelos artesanales de la mejor calidad
+          Maestros Artesanos del <strong>Buñuelo Tradicional</strong>
         </h1>
 
         <p
           class="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg"
         >
-          Descubre el auténtico sabor de nuestros buñuelos artesanales.
-          Elaborados con ingredientes frescos y siguiendo la receta tradicional,
-          cada bocado es una experiencia única de sabor y textura.
+          Desde 1990 elaborando los mejores <strong>buñuelos artesanales</strong
+          > de España. Descubre nuestra selección de sabores tradicionales y modernos,
+          disponibles para entrega en toda la península. Especialistas en grandes
+          pedidos y eventos.
         </p>
 
         <div
           class="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start"
         >
           <a
-            href="#"
+            href="/shop"
             class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
             >Hacer pedido</a
           >
 
           <a
-            href="#"
+            href="/shop#products"
             class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
             >Ver productos</a
           >
@@ -114,7 +115,7 @@ import Logo from "../assets/logo.png";
 
       <!-- image - start -->
       <div
-        class="h-48 overflow-hidden rounded-3xl bg-gray-100 shadow-lg lg:h-auto xl:w-5/12"
+        class="h-48 overflow-hidden rounded-3xl bg-gray-100 shadow-lg lg:h-[42rem] xl:w-5/12"
       >
         <img
           src={bun1.src}

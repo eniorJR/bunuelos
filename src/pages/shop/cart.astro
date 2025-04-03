@@ -1,0 +1,10 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components_cart/Hero.jsx";
+import CartP from "../../components_cart/Cart.jsx";
+---
+
+<Layout>
+  <Hero />
+  <CartP client:only />
+</Layout>

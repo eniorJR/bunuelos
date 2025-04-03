@@ -1,0 +1,245 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Mi Pedido | Buñuelos">
+  <main class="min-h-screen bg-amber-50 py-16">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h1 class="text-3xl font-bold text-amber-800 mb-6 text-center">
+          Consulta tu Pedido
+        </h1>
+
+        <div id="order-lookup-form" class="space-y-4">
+          <div class="mb-4">
+            <label for="order-id" class="block text-gray-700 font-medium mb-2"
+              >ID del Pedido</label
+            >
+            <input
+              type="text"
+              id="order-id"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"
+              placeholder="Introduce el ID de tu pedido (recibido por email)"
+            />
+          </div>
+          <button
+            id="lookup-button"
+            class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+          >
+            Buscar Pedido
+          </button>
+          <p id="error-message" class="text-red-500 hidden">
+            No encontramos ningún pedido con ese ID. Por favor, verifica e
+            intenta de nuevo.
+          </p>
+        </div>
+
+        <div id="order-details" class="hidden mt-8">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-semibold text-amber-800">
+              Detalles del Pedido
+            </h2>
+            <button
+              id="back-button"
+              class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors"
+            >
+              Buscar otro pedido
+            </button>
+          </div>
+
+          <div id="order-loading" class="text-center py-8">
+            <div
+              class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-amber-600"
+            >
+            </div>
+            <p class="mt-2 text-gray-600">Cargando detalles del pedido...</p>
+          </div>
+
+          <div id="order-summary" class="hidden">
+            <!-- Order details will be populated here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-gray-600 mt-8">
+        <p>¿Tienes alguna pregunta sobre tu pedido?</p>
+        <p class="font-medium">
+          Contáctanos en <a
+            href="mailto:hola@buñuelo.es"
+            class="text-amber-700 underline">hola@buñuelo.es</a
+          >
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // DOM Elements
+    const orderLookupForm = document.getElementById("order-lookup-form");
+    const orderDetails = document.getElementById("order-details");
+    const orderIdInput = document.getElementById("order-id");
+    const lookupButton = document.getElementById("lookup-button");
+    const backButton = document.getElementById("back-button");
+    const errorMessage = document.getElementById("error-message");
+    const orderLoading = document.getElementById("order-loading");
+    const orderSummary = document.getElementById("order-summary");
+
+    // Check if we have an order ID in the URL
+    function checkUrlParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get("id");
+
+      if (orderId) {
+        orderIdInput!.value = orderId;
+        lookupOrder();
+      }
+    }
+
+    // Lookup button handler
+    lookupButton!.addEventListener("click", lookupOrder);
+
+    // Back button handler
+    backButton!.addEventListener("click", () => {
+      orderDetails!.classList.add("hidden");
+      orderLookupForm!.classList.remove("hidden");
+      errorMessage!.classList.add("hidden");
+    });
+
+    // Handle Enter key in the input field
+    orderIdInput!.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        lookupOrder();
+      }
+    });
+
+    // Lookup order function
+    async function lookupOrder() {
+      const orderId = orderIdInput.value.trim();
+
+      if (!orderId) {
+        errorMessage!.textContent = "Por favor, introduce el ID de tu pedido";
+        errorMessage!.classList.remove("hidden");
+        return;
+      }
+
+      try {
+        // Show loading and hide error
+        orderLookupForm.classList.add("hidden");
+        orderDetails.classList.remove("hidden");
+        orderLoading.classList.remove("hidden");
+        orderSummary.classList.add("hidden");
+        errorMessage.classList.add("hidden");
+
+        // Fetch order details
+        const response = await fetch(`/api/customer/order?id=${orderId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Order not found");
+        }
+
+        const order = await response.json();
+        renderOrderDetails(order);
+        orderSummary.classList.remove("hidden");
+      } catch (error) {
+        console.error("Error fetching order:", error);
+        orderLookupForm.classList.remove("hidden");
+        orderDetails.classList.add("hidden");
+        errorMessage.classList.remove("hidden");
+      } finally {
+        orderLoading.classList.add("hidden");
+      }
+    }
+
+    // Render order details
+    function renderOrderDetails(order) {
+      const orderDate = new Date(
+        order.created_at || order.created || Date.now()
+      ).toLocaleDateString("es-ES", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      const itemsHtml =
+        order.items && order.items.length > 0
+          ? order.items
+              .map(
+                (item) => `
+          <div class="flex justify-between py-2 border-b border-gray-100">
+            <div class="flex-1">
+              <p class="font-medium">${item.name || item.description}</p>
+              <p class="text-sm text-gray-500">Cantidad: ${item.quantity || 1}</p>
+            </div>
+            <p class="font-medium text-right">${item.price || item.amount || "0.00"}€</p>
+          </div>
+        `
+              )
+              .join("")
+          : '<p class="text-gray-500 italic py-2">No hay detalles de productos disponibles</p>';
+
+      orderSummary.innerHTML = `
+        <div class="bg-amber-50 p-6 rounded-lg mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold text-lg text-amber-800">Pedido #${order.id || order.session_id?.substring(0, 8) || "N/A"}</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Completado</span>
+          </div>
+          <p class="text-gray-600 mb-4">${orderDate}</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2">Información de Contacto</h4>
+              <p class="text-gray-700">${order.customerName || order.customer_name || "N/A"}</p>
+              <p class="text-gray-700">${order.customerEmail || order.customer_email || "N/A"}</p>
+              <p class="text-gray-700">${order.customerPhone || order.customer_phone || "N/A"}</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2">Dirección de Envío</h4>
+              <p class="text-gray-700">${order.customerAddress || order.customer_address || "N/A"}</p>
+            </div>
+          </div>
+          
+          <div class="mt-6">
+            <h4 class="font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">Productos</h4>
+            <div class="space-y-2">
+              ${itemsHtml}
+            </div>
+          </div>
+          
+          <div class="mt-6 pt-4 border-t border-gray-200">
+            <div class="flex justify-between mb-1">
+              <span class="text-gray-700">Subtotal:</span>
+              <span>${order.subtotal || "0.00"}€</span>
+            </div>
+            <div class="flex justify-between mb-1">
+              <span class="text-gray-700">Envío:</span>
+              <span>${order.shipping || "0.00"}€</span>
+            </div>
+            <div class="flex justify-between mb-1">
+              <span class="text-gray-700">IVA (21%):</span>
+              <span>${order.tax || "0.00"}€</span>
+            </div>
+            <div class="flex justify-between font-bold text-lg mt-2 pt-2 border-t border-gray-200">
+              <span>Total:</span>
+              <span class="text-amber-700">${order.total || "0.00"}€</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-amber-100 p-4 rounded-lg">
+          <h4 class="font-semibold text-amber-800 mb-2">Estado del Envío</h4>
+          <p class="text-gray-700">Tu pedido está siendo preparado y será enviado en breve. Recibirás tu pedido en un plazo de 2 a 5 días laborables.</p>
+        </div>
+      `;
+    }
+
+    // Initialize
+    document.addEventListener("DOMContentLoaded", checkUrlParams);
+  </script>
+</Layout>
