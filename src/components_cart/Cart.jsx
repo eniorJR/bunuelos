@@ -180,7 +180,7 @@ export default function CartP() {
                   <div className="w-full md:max-w-[126px]">
                     <img
                       src={item.imageSrc}
-                      alt="perfume bottle image"
+                      alt={"Imagen de buñuelos " + item.name}
                       className="mx-auto rounded-xl object-cover"
                     />
                   </div>
