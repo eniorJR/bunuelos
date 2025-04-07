@@ -137,7 +137,7 @@ export default function CartP() {
   };
 
   return (
-    <section className=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
+    <section className="relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
       <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto relative z-10">
         <div className="grid grid-cols-12">
           <div className="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-24 w-full max-xl:max-w-3xl max-xl:mx-auto">
@@ -150,93 +150,92 @@ export default function CartP() {
                 {cartList && cartList.length === 1 ? "Producto" : "Productos"}
               </h2>
             </div>
-            <div className="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
-              <div className="col-span-12 md:col-span-7">
-                <p className="font-normal text-lg leading-8 text-gray-400">
+
+            {/* Table header - visible on all screen sizes */}
+            <div className="grid grid-cols-12 mt-8 pb-6 border-b border-gray-200">
+              <div className="col-span-6 md:col-span-7">
+                <p className="font-normal text-base md:text-lg leading-8 text-gray-400">
                   Producto
                 </p>
               </div>
-              <div className="col-span-12 md:col-span-5">
-                <div className="grid grid-cols-5">
-                  <div className="col-span-3">
-                    <p className="font-normal text-lg leading-8 text-gray-400 text-center">
-                      Cantidad
-                    </p>
-                  </div>
-                  <div className="col-span-2">
-                    <p className="font-normal text-lg leading-8 text-gray-400 text-center">
-                      Total
-                    </p>
-                  </div>
-                </div>
+              <div className="col-span-3 md:col-span-3">
+                <p className="font-normal text-base md:text-lg leading-8 text-gray-400 text-center">
+                  Cantidad
+                </p>
+              </div>
+              <div className="col-span-3 md:col-span-2">
+                <p className="font-normal text-base md:text-lg leading-8 text-gray-400 text-right md:text-center">
+                  Total
+                </p>
               </div>
             </div>
+
             {cartList && cartList.length > 0 ? (
               cartList.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group"
+                  className="grid grid-cols-12 items-center gap-2 py-6 border-b border-gray-200 group"
                 >
-                  <div className="w-full md:max-w-[126px]">
-                    <img
-                      src={item.imageSrc}
-                      alt={"Imagen de buñuelos " + item.name}
-                      className="mx-auto rounded-xl object-cover"
-                    />
+                  <div className="col-span-6 md:col-span-7 flex items-center gap-3">
+                    <div className="w-16 h-16 md:w-[126px] md:h-auto flex-shrink-0">
+                      <img
+                        src={item.imageSrc}
+                        alt={"Imagen de buñuelos " + item.name}
+                        className="rounded-xl object-cover w-full h-full"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <h6 className="font-semibold text-sm md:text-base leading-tight md:leading-7 text-black">
+                        {item.name}
+                      </h6>
+                      <h6 className="font-normal text-xs md:text-base leading-tight md:leading-7 text-gray-500 mt-1">
+                        {item.cat}
+                      </h6>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-4 w-full">
-                    <div className="md:col-span-2">
-                      <div className="flex flex-col max-[500px]:items-center gap-3">
-                        <h6 className="font-semibold text-base leading-7 text-black">
-                          {item.name}
-                        </h6>
-                        <h6 className="font-normal text-base leading-7 text-gray-500">
-                          {item.cat}
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="flex m-auto items-center max-[500px]:justify-center h-full max-md:mt-3">
-                      <div className="flex items-center h-full">
-                        <span
-                          type="text"
-                          className="border-gray-200 text-gray-900 font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-gray-900 py-[15px] text-center bg-transparent"
+
+                  <div className="col-span-3 md:col-span-3 flex items-center justify-center">
+                    <div className="flex items-center h-full">
+                      <span
+                        type="text"
+                        className="border-gray-200 text-gray-900 font-semibold text-base md:text-lg w-full max-w-[50px] md:max-w-[73px] min-w-[40px] md:min-w-[60px] py-2 md:py-[15px] text-center bg-transparent"
+                      >
+                        {item.quantity}
+                      </span>
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className="ml-2 md:ml-3 p-1.5 md:p-2 cursor-pointer rounded-full hover:bg-red-50 text-red-500 hover:text-red-700 transition-colors"
+                        title="Eliminar producto"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="md:w-[18px] md:h-[18px]"
                         >
-                          {" "}
-                          {item.quantity}
-                        </span>
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          className="ml-3 p-2 cursor-pointer rounded-full hover:bg-red-50 text-red-500 hover:text-red-700 transition-colors"
-                          title="Eliminar producto"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M3 6h18"></path>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                          </svg>
-                        </button>
-                      </div>
+                          <path d="M3 6h18"></path>
+                          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                        </svg>
+                      </button>
                     </div>
-                    <div className="flex items-center max-[500px]:justify-center md:justify-end max-md:mt-3 h-full">
-                      <p className="font-bold text-lg leading-8 text-gray-600 text-center transition-all duration-300 group-hover:text-indigo-600">
-                        {item.price} €
-                      </p>
-                    </div>
+                  </div>
+
+                  <div className="col-span-3 md:col-span-2 flex items-center justify-end">
+                    <p className="font-bold text-base md:text-lg leading-tight md:leading-8 text-gray-600 text-right transition-all duration-300 group-hover:text-indigo-600">
+                      {item.price} €
+                    </p>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-full py-12">
                 <p className="font-bold text-lg leading-8 text-gray-600 text-center">
                   No hay productos en el carrito
                 </p>
@@ -267,7 +266,9 @@ export default function CartP() {
               </a>
             </div>
           </div>
-          <div className=" col-span-12 xl:col-span-4 bg-gray-50 w-full max-xl:px-6 max-w-3xl xl:max-w-lg mx-auto lg:pl-8 py-24">
+
+          {/* Checkout section remains unchanged */}
+          <div className="col-span-12 xl:col-span-4 bg-gray-50 w-full max-xl:px-6 max-w-3xl xl:max-w-lg mx-auto lg:pl-8 py-24">
             <h2 className="font-manrope font-bold text-3xl leading-10 text-black pb-8 border-b border-gray-300">
               Confirmar pedido
             </h2>

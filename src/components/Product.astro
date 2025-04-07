@@ -5,32 +5,35 @@ import bun3 from "../assets/bun3.webp";
 import bun4 from "../assets/bun4.jpg";
 ---
 
-<section class="py-24">
+<section class="py-12 sm:py-16 md:py-20 lg:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h2
-      class="font-manrope font-bold text-4xl text-black mb-8 max-xl:text-center"
+      class="font-manrope font-bold text-2xl sm:text-3xl md:text-4xl text-black mb-6 sm:mb-8 text-center xl:text-left"
     >
       Nuestros Buñuelos
     </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+    >
       <a
         href="/bunuelo/clasico"
-        class="relative bg-cover group rounded-3xl bg-center overflow-hidden mx-auto sm:mr-0 xl:mx-auto cursor-pointer"
+        class="relative bg-cover group rounded-3xl bg-center overflow-hidden w-full max-w-xs sm:max-w-none mx-auto cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
       >
         <img
-          class="rounded-2xl object-cover h-64"
+          class="rounded-2xl object-cover w-full h-48 sm:h-56 md:h-64"
           src={bun1.src}
           alt="Buñuelo clásico con azúcar"
+          loading="lazy"
         />
         <div
           class="absolute z-10 bottom-3 left-0 mx-3 p-3 bg-white w-[calc(100%-24px)] rounded-xl shadow-sm shadow-transparent transition-all duration-500 group-hover:shadow-indigo-200 group-hover:bg-indigo-50"
         >
-          <div class="flex items-center justify-between mb-2">
-            <h6 class="font-semibold text-base leading-7 text-black">
+          <div class="flex items-center justify-between mb-1 sm:mb-2">
+            <h6 class="font-semibold text-sm sm:text-base leading-7 text-black">
               Buñuelo Clásico
             </h6>
             <h6
-              class="font-semibold text-base leading-7 text-indigo-600 text-right"
+              class="font-semibold text-sm sm:text-base leading-7 text-indigo-600 text-right"
             >
               2.50€
             </h6>
@@ -43,22 +46,23 @@ import bun4 from "../assets/bun4.jpg";
 
       <a
         href="/bunuelo/crema"
-        class="relative bg-cover group rounded-3xl bg-center overflow-hidden mx-auto sm:ml-0 xl:mx-auto cursor-pointer"
+        class="relative bg-cover group rounded-3xl bg-center overflow-hidden w-full max-w-xs sm:max-w-none mx-auto cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
       >
         <img
-          class="rounded-2xl object-cover h-64"
+          class="rounded-2xl object-cover w-full h-48 sm:h-56 md:h-64"
           src={bun2.src}
           alt="Buñuelo relleno de crema"
+          loading="lazy"
         />
         <div
           class="absolute z-10 bottom-3 left-0 mx-3 p-3 bg-white w-[calc(100%-24px)] rounded-xl shadow-sm shadow-transparent transition-all duration-500 group-hover:shadow-indigo-200 group-hover:bg-indigo-50"
         >
-          <div class="flex items-center justify-between mb-2">
-            <h6 class="font-semibold text-base leading-7 text-black">
+          <div class="flex items-center justify-between mb-1 sm:mb-2">
+            <h6 class="font-semibold text-sm sm:text-base leading-7 text-black">
               Buñuelo de Crema
             </h6>
             <h6
-              class="font-semibold text-base leading-7 text-indigo-600 text-right"
+              class="font-semibold text-sm sm:text-base leading-7 text-indigo-600 text-right"
             >
               3.00€
             </h6>
@@ -71,22 +75,23 @@ import bun4 from "../assets/bun4.jpg";
 
       <a
         href="/bunuelo/nata"
-        class="relative bg-cover group rounded-3xl bg-center overflow-hidden mx-auto sm:mr-0 xl:mx-auto cursor-pointer"
+        class="relative bg-cover group rounded-3xl bg-center overflow-hidden w-full max-w-xs sm:max-w-none mx-auto cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
       >
         <img
-          class="rounded-2xl object-cover h-64"
+          class="rounded-2xl object-cover w-full h-48 sm:h-56 md:h-64"
           src={bun3.src}
           alt="Buñuelo relleno de nata"
+          loading="lazy"
         />
         <div
           class="absolute z-10 bottom-3 left-0 mx-3 p-3 bg-white w-[calc(100%-24px)] rounded-xl shadow-sm shadow-transparent transition-all duration-500 group-hover:shadow-indigo-200 group-hover:bg-indigo-50"
         >
-          <div class="flex items-center justify-between mb-2">
-            <h6 class="font-semibold text-base leading-7 text-black">
+          <div class="flex items-center justify-between mb-1 sm:mb-2">
+            <h6 class="font-semibold text-sm sm:text-base leading-7 text-black">
               Buñuelo de Nata
             </h6>
             <h6
-              class="font-semibold text-base leading-7 text-indigo-600 text-right"
+              class="font-semibold text-sm sm:text-base leading-7 text-indigo-600 text-right"
             >
               3.00€
             </h6>
@@ -99,22 +104,23 @@ import bun4 from "../assets/bun4.jpg";
 
       <a
         href="/bunuelo/chocolate"
-        class="relative bg-cover group rounded-3xl bg-center overflow-hidden mx-auto sm:ml-0 xl:mx-auto cursor-pointer"
+        class="relative bg-cover group rounded-3xl bg-center overflow-hidden w-full max-w-xs sm:max-w-none mx-auto cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
       >
         <img
-          class="rounded-2xl object-cover h-64"
+          class="rounded-2xl object-cover w-full h-48 sm:h-56 md:h-64"
           src={bun4.src}
           alt="Buñuelo relleno de chocolate"
+          loading="lazy"
         />
         <div
           class="absolute z-10 bottom-3 left-0 mx-3 p-3 bg-white w-[calc(100%-24px)] rounded-xl shadow-sm shadow-transparent transition-all duration-500 group-hover:shadow-indigo-200 group-hover:bg-indigo-50"
         >
-          <div class="flex items-center justify-between mb-2">
-            <h6 class="font-semibold text-base leading-7 text-black">
+          <div class="flex items-center justify-between mb-1 sm:mb-2">
+            <h6 class="font-semibold text-sm sm:text-base leading-7 text-black">
               Buñuelo de Cacao
             </h6>
             <h6
-              class="font-semibold text-base leading-7 text-indigo-600 text-right"
+              class="font-semibold text-sm sm:text-base leading-7 text-indigo-600 text-right"
             >
               3.00€
             </h6>

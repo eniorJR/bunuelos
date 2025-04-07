@@ -79,7 +79,7 @@ const productsBig = [
 export default function Products() {
   return (
     <div className="bg-bkac" id="products">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-10 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ">
         <h2 className="mb-5 font-bold text-4xl">Packs familia</h2>
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
@@ -99,7 +99,7 @@ export default function Products() {
         </div>
       </div>
 
-      <div className="bg-white py-6 sm:py-8 lg:py-12 px-20">
+      <div className="bg-white py-6 sm:py-8 lg:py-12 px-4">
         <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
           <div className="flex flex-col overflow-hidden rounded-lg bg-gray-900 sm:flex-row md:h-80">
             <div className="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-2/5">
@@ -135,7 +135,7 @@ export default function Products() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-10 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="mb-5 font-bold text-4xl">Pedidos grandes</h2>
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">

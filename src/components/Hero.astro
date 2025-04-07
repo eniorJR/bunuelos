@@ -47,8 +47,10 @@ import Logo from "../assets/logo.png";
       >
 
       <button
+        id="mobile-menu-button"
         type="button"
         class="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden"
+        aria-label="Toggle menu"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +69,38 @@ import Logo from "../assets/logo.png";
       <!-- buttons - end -->
     </header>
 
+    <!-- Mobile menu - start -->
+    <div id="mobile-menu" class="lg:hidden hidden">
+      <nav
+        class="flex flex-col items-center py-4 space-y-4 border-t border-gray-200"
+      >
+        <a href="/" class="text-lg font-semibold text-indigo-500">Inicio</a>
+        <a
+          href="/shop#products"
+          class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
+          >Productos</a
+        >
+        <a
+          href="/shop/order"
+          class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
+          >Pedidos</a
+        >
+        <a
+          href="/about/"
+          class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
+          >Nosotros</a
+        >
+        <a
+          href="/shop/"
+          class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
+          >Pedir ya</a
+        >
+      </nav>
+    </div>
+    <!-- Mobile menu - end -->
+
     <section
-      class="flex flex-col justify-between gap-6 sm:gap-8 md:gap-14 lg:flex-row px-10"
+      class="flex flex-col justify-between gap-6 sm:gap-8 md:gap-14 lg:flex-row px-6"
     >
       <!-- content - start -->
       <div
@@ -128,3 +160,27 @@ import Logo from "../assets/logo.png";
     </section>
   </div>
 </div>
+
+<script>
+  // Mobile menu functionality
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener("click", () => {
+      // Toggle the mobile menu visibility
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (event) => {
+      if (
+        !mobileMenu.contains(event.target) &&
+        !mobileMenuButton.contains(event.target) &&
+        !mobileMenu.classList.contains("hidden")
+      ) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+  }
+</script>
