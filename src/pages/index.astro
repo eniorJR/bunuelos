@@ -3,7 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Product from "../components/Product.astro";
 import CallAction1 from "../components/CallAction1.astro";
+import FAQ from "../components/FAQ.astro";
 import Footer from "../components/Footer.astro";
+import OurChefs from "../components/OurChefs.astro";
 
 // SEO metadata for homepage
 const seoData = {
@@ -23,7 +25,10 @@ const seoData = {
   keywords={seoData.keywords}
 >
   <Hero />
-  <Product />
   <CallAction1 />
+  <OurChefs />
+  <Product />
+  <!--<OurClients /> -->
+  <FAQ />
   <Footer />
 </Layout>
