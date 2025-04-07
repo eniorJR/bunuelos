@@ -8,4 +8,4 @@ const base = "/";
 app.use(base, express.static("dist/client/"));
 app.use(ssrHandler);
 
-app.listen(8080);
+app.listen(80);

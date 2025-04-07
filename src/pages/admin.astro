@@ -24,9 +24,29 @@ import Layout from "../layouts/Layout.astro";
           </div>
           <button
             id="login-button"
-            class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+            class="w-full cursor-pointer bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors flex justify-center items-center"
           >
-            Acceder
+            <span id="login-text">Acceder</span>
+            <svg
+              id="login-spinner"
+              class="animate-spin ml-2 h-5 w-5 text-white hidden"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
           </button>
           <p id="error-message" class="text-red-500 hidden">
             Contraseña incorrecta
@@ -74,14 +94,13 @@ import Layout from "../layouts/Layout.astro";
   </main>
 
   <script>
-    // Constants
-    const CORRECT_PASSWORD = "b4d331bb6950a11acaaa34db90990728";
-
     // DOM Elements
     const loginForm = document.getElementById("login-form")!;
     const ordersPanel = document.getElementById("orders-panel")!;
     const passwordInput = document.getElementById("password")!;
     const loginButton = document.getElementById("login-button")!;
+    const loginText = document.getElementById("login-text")!;
+    const loginSpinner = document.getElementById("login-spinner")!;
     const logoutButton = document.getElementById("logout-button")!;
     const errorMessage = document.getElementById("error-message")!;
     const ordersLoading = document.getElementById("orders-loading")!;
@@ -604,29 +623,39 @@ import Layout from "../layouts/Layout.astro";
 
     // Check if already logged in
     function checkAuth() {
-      const isAuthenticated =
-        sessionStorage.getItem("admin-authenticated") === "true";
+      const isAuthenticated = sessionStorage.getItem("admin-authenticated");
       if (isAuthenticated) {
         showOrdersPanel();
-        fetchOrders();
+        fetchOrders(sessionStorage.getItem("admin-authenticated") || "");
       }
     }
 
     // Login handler
     loginButton!.addEventListener("click", () => {
+      // Show loading state
+      loginButton.disabled = true;
+      loginText.textContent = "Verificando...";
+      loginSpinner.classList.remove("hidden");
+      errorMessage!.classList.add("hidden");
+
       const password = passwordInput.value;
       var passhash = MD5(password);
-      console.log(passhash);
 
-      if (passhash === CORRECT_PASSWORD) {
-        sessionStorage.setItem("admin-authenticated", "true");
-        errorMessage!.classList.add("hidden");
-        showOrdersPanel();
-        fetchOrders();
-      } else {
-        errorMessage!.classList.remove("hidden");
-        passwordInput!.value = "";
-      }
+      fetchOrders(passhash)
+        .then(() => {
+          sessionStorage.setItem("admin-authenticated", passhash);
+          showOrdersPanel();
+        })
+        .catch((error) => {
+          errorMessage!.classList.remove("hidden");
+          passwordInput!.value = "";
+        })
+        .finally(() => {
+          // Reset button state
+          loginButton.disabled = false;
+          loginText.textContent = "Acceder";
+          loginSpinner.classList.add("hidden");
+        });
     });
 
     // Logout handler
@@ -648,7 +677,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     // Fetch orders from API
-    async function fetchOrders() {
+    async function fetchOrders(CORRECT_PASSWORD: string) {
       try {
         ordersLoading.classList.remove("hidden");
         ordersList.classList.add("hidden");
@@ -675,9 +704,12 @@ import Layout from "../layouts/Layout.astro";
           ordersList!.classList.remove("hidden");
         }
       } catch (error) {
+        throw new Error("Failed to fetch orders");
+
         console.error("Error fetching orders:", error);
         noOrders!.textContent =
           "Error al cargar los pedidos. Inténtalo de nuevo más tarde.";
+
         noOrders!.classList.remove("hidden");
       } finally {
         ordersLoading!.classList.add("hidden");
