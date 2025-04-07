@@ -2,9 +2,25 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components_shop/Hero.jsx";
 import Products from "../../components_shop/Products.jsx";
+
+// SEO metadata for products page
+const seoData = {
+  title: "Nuestros Buñuelos Artesanales | Variedades y Sabores Tradicionales",
+  canonicalURL: "https://buñuelos.es/shop",
+
+  description:
+    "Explora nuestra selección de buñuelos artesanales: clásicos, de chocolate, crema y nata. Elaborados diariamente con ingredientes de primera calidad. Envío a toda España.",
+  keywords:
+    "comprar buñuelos, buñuelos artesanales, buñuelos de chocolate, buñuelos de crema, buñuelos de nata, buñuelos clásicos, repostería tradicional",
+};
 ---
 
-<Layout>
+<Layout
+  title={seoData.title}
+  canonicalURL={seoData.canonicalURL}
+  description={seoData.description}
+  keywords={seoData.keywords}
+>
   <Hero client:only />
   <Products />
 </Layout>

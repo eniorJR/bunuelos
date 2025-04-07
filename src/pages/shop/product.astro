@@ -2,9 +2,51 @@
 import Layout from "../../layouts/Layout.astro";
 import ProductPage from "../../components_product/ProductPage.jsx";
 import Hero from "../../components_product/Hero.jsx";
+
+// SEO metadata for product page
+const seoData = {
+  title: "Buñuelos Artesanales | Descubre Nuestros Productos Tradicionales",
+  canonicalURL: "https://buñuelos.es/shop/product",
+
+  description:
+    "Explora nuestra selección de buñuelos artesanales elaborados con recetas tradicionales. Buñuelos clásicos, de chocolate, crema y nata. Envíos a toda España.",
+  keywords:
+    "buñuelos artesanales, comprar buñuelos, buñuelos tradicionales, buñuelos de chocolate, buñuelos de crema, buñuelos de nata, repostería tradicional española",
+  type: "product",
+};
 ---
 
-<Layout>
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  keywords={seoData.keywords}
+  canonicalURL={seoData.canonicalURL}
+  type={seoData.type}
+>
   <Hero client:only />
   <ProductPage client:only />
+
+  <!-- Product JSON-LD structured data -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Buñuelos Artesanales",
+      "image": ["https://bunuelos.es/images/buñuelos-seleccion.jpg"],
+      "description": "Buñuelos artesanales elaborados con recetas tradicionales. Disponibles en varios sabores: clásico, chocolate, crema y nata.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Buñuelos Artesanales"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": "https://bunuelos.es/shop/product",
+        "priceCurrency": "EUR",
+        "lowPrice": "2.50",
+        "highPrice": "3.50",
+        "offerCount": "4",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  </script>
 </Layout>

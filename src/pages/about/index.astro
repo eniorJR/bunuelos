@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components_about/Hero.astro";
+import About1 from "../../components_about/About1.astro";
+import About2 from "../../components_about/About2.astro";
+import Testimonial from "../../components_about/Testimonial.astro";
+import FAQ from "../../components_about/FAQ.astro";
+import Footer from "../../components_about/Footer.astro";
+
+// SEO metadata for about page
+const seoData = {
+  title: "Nuestra Historia | Buñuelos Artesanales Desde 1990",
+  description:
+    "Descubre la tradición familiar detrás de nuestros buñuelos artesanales. Tres generaciones preservando recetas auténticas y sabores tradicionales. Conoce nuestro proceso de elaboración.",
+  keywords:
+    "historia buñuelos artesanales, tradición familiar buñuelos, elaboración buñuelos, repostería tradicional española, buñuelos caseros",
+};
+---
+
+<Layout
+  title={seoData.title}
+  description={seoData.description}
+  keywords={seoData.keywords}
+>
+  <Hero />
+  <About1 />
+  <About2 />
+  <Testimonial />
+  <FAQ />
+  <Footer />
+</Layout>

@@ -1,20 +1,147 @@
 ---
 import "../styles/global.css";
+
+// SEO Props
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  type?: string;
+  keywords?: string;
+}
+
+// Default SEO values
+const {
+  title = "Buñuelos Artesanales | Los Mejores Buñuelos Recién Hechos",
+  description = "Descubre nuestros buñuelos artesanales elaborados con recetas tradicionales desde 1990. Envíos a toda España, ideales para eventos y celebraciones. ¡Prueba el auténtico sabor de la tradición!",
+  type = "website",
+  canonicalURL = "https://buñuelos.es",
+  keywords = "buñuelos artesanales, buñuelos tradicionales, buñuelos de chocolate, buñuelos de crema, buñuelos de nata, repostería tradicional, dulces españoles, postres caseros, envío de buñuelos, buñuelos para eventos",
+} = Astro.props;
+
+// Format the canonical URL
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="icon" type="image/png" href="/logo.png" />
+
+    <meta name="author" content="Buñuelos Artesanales" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Buñuelos Artesanales" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FoodEstablishment",
+        "name": "Buñuelos Artesanales",
+        "description": "Buñuelos artesanales elaborados con recetas tradicionales desde 1990",
+        "image": "/images/buñuelos-artesanales.jpg",
+        "url": "https://bunuelos.es",
+        "telephone": "+34612345678",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Principal 123",
+          "addressLocality": "Madrid",
+          "postalCode": "28001",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.416775",
+          "longitude": "-3.703790"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        "servesCuisine": "Repostería tradicional española",
+        "priceRange": "€€",
+        "paymentAccepted": "Efectivo, tarjeta de crédito",
+        "offers": {
+          "@type": "Offer",
+          "description": "Buñuelos artesanales con envío a toda España",
+          "price": "2.50",
+          "priceCurrency": "EUR"
+        }
+      }
+    </script>
+
+    <!-- Stripe Script -->
     <script src="https://js.stripe.com/v3/"></script>
 
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Buñuelos Artesanales | Los Mejores Buñuelos Recién Hechos</title>
+    <!-- Additional custom head elements -->
+    <slot name="head" />
   </head>
   <body>
     <slot />
+
+    <!-- Structured data for breadcrumbs - can be customized per page -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://bunuelos.es"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Productos",
+            "item": "https://bunuelos.es/shop#products"
+          }
+        ]
+      }
+    </script>
   </body>
 </html>
 
